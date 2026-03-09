@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Adi · Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#09080d;--s1:#111018;--s2:#18161f;--s3:#201e29;
+  --accent:#f4a261;--accent2:#e76f51;--violet:#9b72cf;--violet2:#6d47b8;
+  --green:#4ade80;--red:#f87171;--text:#ede8e3;--muted:#665f78;--border:#2a2535;--border2:#342f42;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;}
+.orb1{width:400px;height:400px;top:-100px;right:-80px;background:radial-gradient(circle,rgba(155,114,207,0.07) 0%,transparent 70%);}
+.orb2{width:350px;height:350px;bottom:-80px;left:-60px;background:radial-gradient(circle,rgba(244,162,97,0.05) 0%,transparent 70%);}
+
+/* LOGIN */
+#loginScreen{position:fixed;inset:0;background:var(--bg);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn 0.4s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.login-card{background:var(--s1);border:1px solid var(--border2);border-radius:28px;padding:40px 32px;max-width:360px;width:100%;text-align:center;position:relative;z-index:1;}
+.login-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--accent2));margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 40px rgba(155,114,207,0.25);}
+.login-card h1{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:6px;}
+.login-card p{color:var(--muted);font-size:13px;margin-bottom:28px;}
+.login-input{width:100%;background:var(--s2);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;outline:none;margin-bottom:14px;transition:border-color 0.2s;text-align:center;letter-spacing:0.2em;}
+.login-input:focus{border-color:var(--violet);}
+.login-input::placeholder{color:var(--muted);letter-spacing:normal;}
+.login-btn{width:100%;padding:14px;border-radius:16px;background:linear-gradient(135deg,var(--violet),var(--violet2));border:none;color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform 0.15s;}
+.login-btn:hover{transform:scale(1.02);}
+.login-err{font-size:12px;color:var(--red);margin-top:10px;opacity:0;transition:opacity 0.3s;}
+.login-err.show{opacity:1;}
+
+/* APP */
+#app{display:none;height:100%;flex-direction:column;position:relative;z-index:1;}
+#app.visible{display:flex;}
+
+.header{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--border);background:rgba(9,8,13,0.92);backdrop-filter:blur(16px);flex-shrink:0;}
+.h-logo{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:16px;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;}
+.h-sub{font-size:11px;color:var(--muted);}
+.h-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.h-refresh{padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.h-refresh:hover{border-color:var(--violet);color:var(--text);}
+.h-logout{padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.h-logout:hover{border-color:var(--red);color:var(--red);}
+
+.stats-bar{display:flex;border-bottom:1px solid var(--border);background:var(--s1);flex-shrink:0;}
+.stat{flex:1;padding:14px 20px;border-right:1px solid var(--border);text-align:center;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:2px;}
+
+.main{flex:1;display:flex;overflow:hidden;}
+
+.sidebar{width:300px;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;}
+.sb-top{padding:12px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
+.search-box{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--text);font-family:'Syne',sans-serif;font-size:12px;outline:none;}
+.search-box::placeholder{color:var(--muted);}
+.filter-row{display:flex;gap:6px;}
+.filter-btn{flex:1;padding:5px 8px;border-radius:20px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-family:'Syne',sans-serif;font-size:11px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.filter-btn.active{border-color:var(--violet);background:rgba(155,114,207,0.1);color:var(--text);}
+.sessions-list{flex:1;overflow-y:auto;padding:8px;}
+.sessions-list::-webkit-scrollbar{width:3px;}
+.sessions-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.session-card{padding:12px 14px;border-radius:14px;border:1px solid transparent;cursor:pointer;margin-bottom:6px;transition:all 0.2s;}
+.session-card:hover{background:var(--s2);border-color:var(--border);}
+.session-card.active{background:var(--s2);border-color:var(--violet);}
+.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+.sc-name{font-size:14px;font-weight:600;}
+.sc-score{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;}
+.sc-score.high{color:var(--accent);background:rgba(244,162,97,0.1);border:1px solid rgba(244,162,97,0.2);}
+.sc-score.mid{color:var(--violet);background:rgba(155,114,207,0.1);border:1px solid rgba(155,114,207,0.2);}
+.sc-score.low{color:var(--muted);background:var(--s3);border:1px solid var(--border);}
+.sc-meta{font-size:11px;color:var(--muted);}
+.sc-vibes{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.sc-vibe{font-size:10px;padding:2px 7px;border-radius:8px;background:var(--s3);color:var(--muted);}
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;line-height:1.8;}
+.loading-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
+
+.chat-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.cp-header{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.cp-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--violet));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.cp-info h3{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;}
+.cp-info span{font-size:11px;color:var(--muted);}
+.cp-score-pill{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.cp-compat{font-size:13px;font-weight:600;color:var(--accent);}
+.cp-bar-wrap{width:80px;height:5px;background:var(--s3);border-radius:10px;overflow:hidden;}
+.cp-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--violet),var(--accent));transition:width 0.5s;}
+.delete-btn{padding:6px 12px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--muted);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;margin-left:8px;}
+.delete-btn:hover{border-color:var(--red);color:var(--red);}
+
+.messages-view{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:12px;}
+.messages-view::-webkit-scrollbar{width:3px;}
+.messages-view::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.mv-row{display:flex;gap:8px;align-items:flex-start;}
+.mv-row.user{flex-direction:row-reverse;}
+.mv-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:2px;}
+.bot-av2{background:linear-gradient(135deg,var(--accent),var(--violet));}
+.usr-av2{background:linear-gradient(135deg,#5a4fcf,#9b72cf);}
+.mv-content{max-width:70%;}
+.mv-bubble{padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.6;}
+.mv-row.bot .mv-bubble{background:var(--s2);border:1px solid var(--border);border-bottom-left-radius:4px;}
+.mv-row.user .mv-bubble{background:#1f1a32;border:1px solid #352a50;border-bottom-right-radius:4px;}
+.mv-time{font-size:10px;color:var(--muted);padding:3px 4px;}
+.mv-row.user .mv-time{text-align:right;}
+.mv-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:8px;margin-bottom:4px;}
+.tag-poll{background:rgba(155,114,207,0.1);color:var(--violet);border:1px solid rgba(155,114,207,0.2);}
+.tag-wyr{background:rgba(244,162,97,0.1);color:var(--accent);border:1px solid rgba(244,162,97,0.2);}
+.tag-cta{background:rgba(74,222,128,0.1);color:var(--green);border:1px solid rgba(74,222,128,0.2);}
+.tag-system{background:var(--s3);color:var(--muted);border:1px solid var(--border);}
+
+.no-session{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:10px;}
+.no-session-icon{font-size:48px;opacity:0.3;}
+
+@media(max-width:700px){.sidebar{width:240px;}.stat{padding:10px 12px;}.stat-val{font-size:20px;}}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div>
+
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-icon">🔐</div>
+    <h1>Admin Panel</h1>
+    <p>Adi's chat history — all sessions from all devices</p>
+    <input class="login-input" id="pwInput" type="password" placeholder="Password" maxlength="50" onkeydown="if(event.key==='Enter')tryLogin()"/>
+    <button class="login-btn" onclick="tryLogin()">Enter →</button>
+    <div class="login-err" id="loginErr">Wrong password. Try again.</div>
+  </div>
+</div>
+
+<div id="app">
+  <div class="header">
+    <div class="h-logo">🎯</div>
+    <div>
+      <div class="h-title">Adi · Chat Dashboard</div>
+      <div class="h-sub" id="hSub">Loading…</div>
+    </div>
+    <div class="h-right">
+      <button class="h-refresh" onclick="loadData()">↻ Refresh</button>
+      <button class="h-logout" onclick="logout()">Log out</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">Total chats</div></div>
+    <div class="stat"><div class="stat-val" id="statAvg">—</div><div class="stat-lbl">Avg vibe score</div></div>
+    <div class="stat"><div class="stat-val" id="statHigh">—</div><div class="stat-lbl">High vibers 🔥</div></div>
+    <div class="stat"><div class="stat-val" id="statMsgs">—</div><div class="stat-lbl">Total messages</div></div>
+  </div>
+
+  <div class="main">
+    <div class="sidebar">
+      <div class="sb-top">
+        <input class="search-box" id="searchBox" placeholder="Search by name…" oninput="renderList()"/>
+        <div class="filter-row">
+          <div class="filter-btn active" data-f="all" onclick="setFilter('all',this)">All</div>
+          <div class="filter-btn" data-f="high" onclick="setFilter('high',this)">🔥 High</div>
+          <div class="filter-btn" data-f="recent" onclick="setFilter('recent',this)">Recent</div>
+        </div>
+      </div>
+      <div class="sessions-list" id="sessionsList">
+        <div class="loading-state">Loading sessions…</div>
+      </div>
+    </div>
+
+    <div class="chat-panel" id="chatPanel">
+      <div class="no-session" id="noSession">
+        <div class="no-session-icon">💬</div>
+        <p>Select a conversation to view</p>
+      </div>
+      <div id="sessionView" style="display:none;flex-direction:column;height:100%;overflow:hidden;">
+        <div class="cp-header">
+          <div class="cp-avatar">👤</div>
+          <div class="cp-info">
+            <h3 id="cpName">—</h3>
+            <span id="cpMeta">—</span>
+          </div>
+          <div class="cp-score-pill">
+            <div class="cp-bar-wrap"><div class="cp-bar" id="cpBar" style="width:0%"></div></div>
+            <span class="cp-compat" id="cpScore">—</span>
+          </div>
+          <button class="delete-btn" onclick="deleteSession()">Delete</button>
+        </div>
+        <div class="messages-view" id="messagesView"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ══════════════════════════════════════
+// ⚠️ SET YOUR OWN ADMIN PASSWORD HERE
+const ADMIN_PASSWORD = 'adi2026';
+// ══════════════════════════════════════
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASbbhCxyUBmuWIxdLiEU3FvvAYRE7R-So",
+  authDomain: "aditya-91ccb.firebaseapp.com",
+  projectId: "aditya-91ccb",
+  storageBucket: "aditya-91ccb.firebasestorage.app",
+  messagingSenderId: "204446665948",
+  appId: "1:204446665948:web:56ace9f2c8ec31334db819"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+
+let sessions=[], activeId=null, currentFilter='all';
+
+// Login
+window.tryLogin=function(){
+  const pw=document.getElementById('pwInput').value;
+  if(pw===ADMIN_PASSWORD){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('app').classList.add('visible');
+    loadData();
+  } else {
+    const err=document.getElementById('loginErr');
+    err.classList.add('show'); document.getElementById('pwInput').value='';
+    setTimeout(()=>err.classList.remove('show'),3000);
+  }
+};
+window.logout=function(){
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('pwInput').value='';
+};
+
+// Load from Firestore
+window.loadData=async function(){
+  document.getElementById('sessionsList').innerHTML='<div class="loading-state">Loading…</div>';
+  try{
+    const q=query(collection(db,'sessions'),orderBy('startTime','desc'));
+    const snap=await getDocs(q);
+    sessions=snap.docs.map(d=>({id:d.id,...d.data()}));
+    updateStats(); renderList();
+    const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('hSub').textContent=`Last synced ${now} · ${sessions.length} sessions`;
+  }catch(e){
+    document.getElementById('sessionsList').innerHTML=`<div class="empty-state">Error loading data.<br>Check Firestore rules are in test mode.</div>`;
+    console.error('Firebase load error:',e);
+  }
+};
+
+function updateStats(){
+  document.getElementById('statTotal').textContent=sessions.length;
+  const scored=sessions.filter(s=>s.finalScore>0);
+  document.getElementById('statAvg').textContent=scored.length?Math.round(scored.reduce((a,s)=>a+s.finalScore,0)/scored.length)+'%':'—';
+  document.getElementById('statHigh').textContent=sessions.filter(s=>s.finalScore>=70).length;
+  document.getElementById('statMsgs').textContent=sessions.reduce((a,s)=>a+((s.messages||[]).filter(m=>m.role==='user').length),0);
+}
+
+window.setFilter=function(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+};
+
+function renderList(){
+  const q=document.getElementById('searchBox').value.toLowerCase();
+  let list=[...sessions];
+  if(q) list=list.filter(s=>(s.userName||'').toLowerCase().includes(q));
+  if(currentFilter==='high') list=list.filter(s=>s.finalScore>=70);
+  if(currentFilter==='recent') list=list.slice(0,10);
+
+  const el=document.getElementById('sessionsList'); el.innerHTML='';
+  if(!list.length){el.innerHTML='<div class="empty-state">No conversations yet 💬<br><small>Share your chatbot link to get started</small></div>';return;}
+
+  list.forEach(s=>{
+    const card=document.createElement('div');
+    card.className='session-card'+(activeId===s.id?' active':'');
+    const score=s.finalScore||0;
+    const scoreClass=score>=70?'high':score>=40?'mid':'low';
+    const userMsgCount=(s.messages||[]).filter(m=>m.role==='user').length;
+    let dateStr='—';
+    try{
+      const ts=s.startTime?.toDate?s.startTime.toDate():new Date(s.startTime);
+      dateStr=ts.toLocaleDateString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    }catch(e){}
+    const vibes=(s.vibes||[]).slice(0,3).map(v=>`<span class="sc-vibe">${v}</span>`).join('');
+    card.innerHTML=`
+      <div class="sc-top">
+        <span class="sc-name">${s.userName||'Anonymous'}</span>
+        <span class="sc-score ${scoreClass}">${score>0?score+'%':'—'}</span>
+      </div>
+      <div class="sc-meta">${dateStr} · ${userMsgCount} msgs</div>
+      ${vibes?`<div class="sc-vibes">${vibes}</div>`:''}
+    `;
+    card.onclick=()=>openSession(s.id);
+    el.appendChild(card);
+  });
+}
+
+function openSession(id){
+  activeId=id;
+  const s=sessions.find(x=>x.id===id);
+  if(!s)return;
+  document.getElementById('noSession').style.display='none';
+  const sv=document.getElementById('sessionView'); sv.style.display='flex';
+  document.getElementById('cpName').textContent=s.userName||'Anonymous';
+  const userMsgs=(s.messages||[]).filter(m=>m.role==='user').length;
+  let dateStr='—';
+  try{
+    const ts=s.startTime?.toDate?s.startTime.toDate():new Date(s.startTime);
+    dateStr=ts.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }catch(e){}
+  document.getElementById('cpMeta').textContent=`${dateStr} · ${userMsgs} messages · vibes: ${(s.vibes||[]).join(', ')||'none'}`;
+  document.getElementById('cpScore').textContent=(s.finalScore||0)+'%';
+  document.getElementById('cpBar').style.width=(s.finalScore||0)+'%';
+  renderMessages(s.messages||[]);
+  renderList();
+}
+
+function renderMessages(msgs){
+  const el=document.getElementById('messagesView'); el.innerHTML='';
+  if(!msgs.length){el.innerHTML='<div style="text-align:center;color:var(--muted);padding:40px;font-size:13px">No messages recorded</div>';return;}
+  msgs.forEach(m=>{
+    if(!m.content)return;
+    const row=document.createElement('div');
+    row.className=`mv-row ${m.role==='user'?'user':'bot'}`;
+    const av=document.createElement('div');
+    av.className=`mv-av ${m.role==='user'?'usr-av2':'bot-av2'}`;
+    av.textContent=m.role==='user'?'👤':'🎯';
+    const content=document.createElement('div'); content.className='mv-content';
+    const tagMap={poll:'tag-poll',wyr:'tag-wyr',cta:'tag-cta',system:'tag-system'};
+    if(m.type&&m.type!=='text'){
+      const tag=document.createElement('div');
+      tag.className=`mv-tag ${tagMap[m.type]||'tag-system'}`;
+      tag.textContent=m.type.toUpperCase();
+      content.appendChild(tag);
+    }
+    const bub=document.createElement('div'); bub.className='mv-bubble'; bub.textContent=m.content;
+    content.appendChild(bub);
+    if(m.time){
+      const t=document.createElement('div'); t.className='mv-time';
+      t.textContent=new Date(m.time).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+      content.appendChild(t);
+    }
+    row.appendChild(av); row.appendChild(content); el.appendChild(row);
+  });
+  setTimeout(()=>el.scrollTop=el.scrollHeight,50);
+}
+
+window.deleteSession=async function(){
+  if(!activeId)return;
+  if(!confirm('Delete this conversation from Firestore?'))return;
+  try{
+    await deleteDoc(doc(db,'sessions',activeId));
+    sessions=sessions.filter(s=>s.id!==activeId);
+    activeId=null;
+    document.getElementById('noSession').style.display='flex';
+    document.getElementById('sessionView').style.display='none';
+    updateStats(); renderList();
+  }catch(e){alert('Delete failed. Check permissions.');}
+};
+
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin();});
+</script>
+</body>
+</html>
