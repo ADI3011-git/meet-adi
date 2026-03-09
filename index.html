@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meet Adi ✦</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#09080d;--s1:#111018;--s2:#18161f;--s3:#201e29;--accent:#f4a261;--accent2:#e76f51;--violet:#9b72cf;--violet2:#6d47b8;--green:#4ade80;--text:#ede8e3;--muted:#665f78;--border:#2a2535;--border2:#342f42;--user-bg:#1f1a32;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;display:flex;flex-direction:column;position:relative;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;}
+.orb1{width:500px;height:500px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(155,114,207,0.07) 0%,transparent 70%);}
+.orb2{width:400px;height:400px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(244,162,97,0.06) 0%,transparent 70%);}
+#onboarding{position:fixed;inset:0;background:var(--bg);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn 0.4s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeOut{to{opacity:0;transform:scale(0.96)}}
+.ob-card{background:var(--s1);border:1px solid var(--border2);border-radius:28px;padding:36px 28px;max-width:380px;width:100%;text-align:center;position:relative;z-index:1;}
+.ob-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--violet));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 40px rgba(155,114,207,0.3);}
+.ob-card h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;letter-spacing:0.02em;margin-bottom:6px;}
+.ob-card p{color:var(--muted);font-size:13px;line-height:1.7;margin-bottom:24px;}
+.ob-label{font-size:12px;color:var(--muted);text-align:left;margin-bottom:6px;display:block;}
+.ob-input{width:100%;background:var(--s2);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;outline:none;margin-bottom:12px;transition:border-color 0.2s;}
+.ob-input:focus{border-color:var(--violet);}
+.ob-input::placeholder{color:var(--muted);}
+.vibe-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+.vibe-btn{padding:10px 8px;border-radius:12px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.vibe-btn.selected{border-color:var(--violet);background:rgba(155,114,207,0.12);color:var(--text);}
+.vibe-btn:hover:not(.selected){border-color:var(--border2);color:var(--text);}
+.ob-start{width:100%;padding:14px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform 0.15s,opacity 0.15s;letter-spacing:0.03em;}
+.ob-start:hover{transform:scale(1.02);}
+.ob-start:disabled{opacity:0.4;cursor:default;transform:none;}
+.header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(9,8,13,0.92);backdrop-filter:blur(16px);position:relative;z-index:10;flex-shrink:0;}
+.h-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--violet));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative;}
+.h-avatar::after{content:'';position:absolute;bottom:1px;right:1px;width:9px;height:9px;background:var(--green);border-radius:50%;border:2px solid var(--bg);}
+.h-info h2{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;}
+.h-info span{font-size:11px;color:var(--muted);}
+.h-save{margin-left:auto;font-size:10px;color:var(--green);display:flex;align-items:center;gap:5px;opacity:0;transition:opacity 0.4s;}
+.h-save.show{opacity:1;}
+.h-save-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+.compat-bar{padding:10px 20px;background:var(--s1);border-bottom:1px solid var(--border);position:relative;z-index:9;flex-shrink:0;display:flex;align-items:center;gap:12px;}
+.compat-label{font-size:11px;color:var(--muted);white-space:nowrap;}
+.compat-track{flex:1;height:6px;background:var(--s3);border-radius:10px;overflow:hidden;}
+.compat-fill{height:100%;background:linear-gradient(90deg,var(--violet2),var(--accent));border-radius:10px;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);width:0%;}
+.compat-score{font-size:13px;font-weight:600;color:var(--accent);min-width:32px;text-align:right;}
+.compat-badge{font-size:11px;padding:3px 9px;border-radius:20px;background:rgba(155,114,207,0.12);border:1px solid rgba(155,114,207,0.3);color:var(--violet);white-space:nowrap;opacity:0;transition:opacity 0.4s;}
+.messages{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;scroll-behavior:smooth;}
+.messages::-webkit-scrollbar{width:3px;}
+.messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.msg-row{display:flex;gap:8px;align-items:flex-end;opacity:0;animation:slideUp 0.3s ease forwards;}
+@keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg-row.user{flex-direction:row-reverse;}
+.msg-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.bot-av{background:linear-gradient(135deg,var(--accent),var(--violet));}
+.user-av-ic{background:linear-gradient(135deg,#5a4fcf,#9b72cf);}
+.msg-group{display:flex;flex-direction:column;gap:3px;max-width:74%;}
+.user .msg-group{align-items:flex-end;}
+.bubble{padding:11px 15px;border-radius:18px;font-size:14px;line-height:1.65;}
+.bot .bubble{background:var(--s2);border:1px solid var(--border);border-bottom-left-radius:4px;}
+.user .bubble{background:var(--user-bg);border:1px solid #352a50;border-bottom-right-radius:4px;}
+.btime{font-size:10px;color:var(--muted);padding:0 4px;}
+.typing-row{display:flex;gap:8px;align-items:flex-end;}
+.typing-bub{background:var(--s2);border:1px solid var(--border);border-radius:18px;border-bottom-left-radius:4px;padding:13px 16px;display:flex;gap:5px;align-items:center;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:bop 1.2s infinite;}
+.dot:nth-child(2){animation-delay:0.2s;}.dot:nth-child(3){animation-delay:0.4s;}
+@keyframes bop{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1}}
+.poll-wrap{max-width:300px;opacity:0;animation:slideUp 0.3s ease 0.05s forwards;}
+.poll-card{background:var(--s1);border:1px solid var(--border2);border-radius:20px;overflow:hidden;}
+.poll-head{padding:14px 16px 10px;background:linear-gradient(135deg,rgba(155,114,207,0.08),rgba(244,162,97,0.05));border-bottom:1px solid var(--border);}
+.poll-emoji{font-size:24px;margin-bottom:4px;}
+.poll-q{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;}
+.poll-opts{padding:10px;display:flex;flex-direction:column;gap:7px;}
+.p-opt{position:relative;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--s2);cursor:pointer;font-size:13px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s,background 0.2s;}
+.p-opt:hover:not(.disabled){background:var(--s3);border-color:var(--border2);}
+.p-opt.chosen{border-color:var(--violet);background:rgba(155,114,207,0.1);}
+.p-bar{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(155,114,207,0.15),rgba(155,114,207,0.03));border-radius:12px;transition:width 0.7s cubic-bezier(0.4,0,0.2,1);}
+.p-lbl{position:relative;z-index:1;font-size:13px;}
+.p-pct{position:relative;z-index:1;font-size:11px;color:var(--muted);}
+.poll-foot{padding:8px 16px 12px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);}
+.adi-pick-tag{color:var(--accent);font-size:11px;}
+.game-card{background:var(--s1);border:1px solid var(--border2);border-radius:20px;overflow:hidden;max-width:310px;opacity:0;animation:slideUp 0.3s ease 0.05s forwards;}
+.game-head{padding:12px 16px;background:linear-gradient(135deg,rgba(231,111,81,0.1),rgba(244,162,97,0.05));border-bottom:1px solid var(--border);}
+.game-type{font-size:10px;color:var(--accent2);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+.game-q{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;padding:12px 16px 8px;line-height:1.4;}
+.game-opts{padding:8px;display:flex;gap:8px;}
+.g-opt{flex:1;padding:12px 8px;border-radius:12px;border:1px solid var(--border);background:var(--s2);cursor:pointer;text-align:center;font-size:12.5px;transition:all 0.2s;line-height:1.5;}
+.g-opt:hover{border-color:var(--accent2);background:rgba(231,111,81,0.08);}
+.g-opt.picked{border-color:var(--accent);background:rgba(244,162,97,0.1);}
+.g-opt .g-emoji{font-size:22px;margin-bottom:4px;}
+.game-foot{padding:6px 16px 12px;font-size:11px;color:var(--muted);}
+.cta-card{background:linear-gradient(135deg,#1a1028,#0f1a28);border:1px solid #3a2856;border-radius:20px;padding:20px;max-width:300px;opacity:0;animation:slideUp 0.4s ease forwards;}
+.cta-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--accent);margin-bottom:8px;}
+.cta-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.cta-btns{display:flex;flex-direction:column;gap:8px;}
+.cta-primary{padding:12px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:transform 0.15s;}
+.cta-primary:hover{transform:scale(1.02);}
+.cta-secondary{padding:10px;border-radius:14px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'Syne',sans-serif;font-size:13px;cursor:pointer;transition:border-color 0.2s,color 0.2s;}
+.cta-secondary:hover{border-color:var(--violet);color:var(--text);}
+.score-pop{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--s2);border:1px solid var(--violet);border-radius:16px;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:13px;box-shadow:0 8px 32px rgba(155,114,207,0.2);opacity:0;transition:opacity 0.3s,transform 0.3s;z-index:50;pointer-events:none;}
+.score-pop.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.quick-row{display:flex;flex-wrap:wrap;gap:7px;padding:4px 18px 8px;position:relative;z-index:1;opacity:0;animation:slideUp 0.25s ease 0.1s forwards;}
+.qr{padding:7px 13px;border-radius:20px;border:1px solid var(--border2);background:var(--s2);color:var(--text);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.qr:hover{border-color:var(--accent2);color:var(--accent);background:rgba(244,162,97,0.06);}
+.input-area{padding:12px 16px 16px;border-top:1px solid var(--border);background:rgba(9,8,13,0.95);backdrop-filter:blur(16px);position:relative;z-index:10;flex-shrink:0;}
+.input-row{display:flex;gap:8px;align-items:flex-end;}
+.input-box{flex:1;background:var(--s2);border:1px solid var(--border2);border-radius:22px;display:flex;align-items:center;padding:2px 6px 2px 16px;transition:border-color 0.2s;}
+.input-box:focus-within{border-color:var(--violet);}
+textarea{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;resize:none;padding:10px 0;max-height:96px;line-height:1.5;}
+textarea::placeholder{color:var(--muted);}
+.send-btn{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.15s,opacity 0.15s;flex-shrink:0;}
+.send-btn:hover{transform:scale(1.08);}
+.send-btn:disabled{opacity:0.35;cursor:default;transform:none;}
+.send-btn svg{width:15px;height:15px;fill:#fff;}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div>
+<div class="score-pop" id="scorePop"><span>✨</span><span id="scorePopText"></span></div>
+<div id="onboarding">
+  <div class="ob-card">
+    <div class="ob-avatar">🎯</div>
+    <h1>Meet Adi</h1>
+    <p>Chat with Aditya's AI twin — ask anything, play games, see how well you vibe.</p>
+    <label class="ob-label">Your first name</label>
+    <input class="ob-input" id="obName" placeholder="e.g. Priya" maxlength="30"/>
+    <label class="ob-label" style="margin-top:4px">What are you into? (pick a few)</label>
+    <div class="vibe-grid">
+      <div class="vibe-btn" data-v="fitness">🏋️ Fitness</div>
+      <div class="vibe-btn" data-v="music">🎵 Music</div>
+      <div class="vibe-btn" data-v="travel">✈️ Travel</div>
+      <div class="vibe-btn" data-v="food">🍜 Food</div>
+      <div class="vibe-btn" data-v="movies">🎬 Movies/Shows</div>
+      <div class="vibe-btn" data-v="books">📚 Books</div>
+      <div class="vibe-btn" data-v="tech">💻 Tech/AI</div>
+      <div class="vibe-btn" data-v="art">🎨 Art/Design</div>
+    </div>
+    <button class="ob-start" id="obStart" onclick="startApp()" disabled>Start chatting →</button>
+  </div>
+</div>
+<div class="header">
+  <div class="h-avatar">🎯</div>
+  <div class="h-info">
+    <h2>Adi <span style="font-size:11px;color:var(--green)">● online</span></h2>
+    <span>MBA · Accenture-bound · Pune</span>
+  </div>
+  <div class="h-save" id="hSave"><div class="h-save-dot"></div><span>Saved</span></div>
+</div>
+<div class="compat-bar">
+  <span class="compat-label">Vibe match</span>
+  <div class="compat-track"><div class="compat-fill" id="compatFill"></div></div>
+  <span class="compat-score" id="compatScore">—</span>
+  <span class="compat-badge" id="compatBadge"></span>
+</div>
+<div class="messages" id="messages"></div>
+<div class="quick-row" id="quickRow"></div>
+<div class="input-area">
+  <div class="input-row">
+    <div class="input-box">
+      <textarea id="userInput" rows="1" placeholder="Message Adi…" maxlength="400"></textarea>
+    </div>
+    <button class="send-btn" id="sendBtn" onclick="handleSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyASbbhCxyUBmuWIxdLiEU3FvvAYRE7R-So",authDomain:"aditya-91ccb.firebaseapp.com",projectId:"aditya-91ccb",storageBucket:"aditya-91ccb.firebasestorage.app",messagingSenderId:"204446665948",appId:"1:204446665948:web:56ace9f2c8ec31334db819"};
+const fbApp=initializeApp(firebaseConfig);
+const db=getFirestore(fbApp);
+let userName='',userVibes=[],compatScore=0,history=[],busy=false,msgCount=0,ctaShown=false;
+let sessionDocId=null,sessionMessages=[],saveTimer=null;
+document.getElementById('obName').addEventListener('input',()=>{document.getElementById('obStart').disabled=document.getElementById('obName').value.trim().length<2;});
+document.querySelectorAll('.vibe-btn').forEach(btn=>btn.addEventListener('click',()=>{btn.classList.toggle('selected');userVibes=[...document.querySelectorAll('.vibe-btn.selected')].map(b=>b.dataset.v);}));
+window.startApp=function(){userName=document.getElementById('obName').value.trim();const ob=document.getElementById('onboarding');ob.style.animation='fadeOut 0.3s ease forwards';setTimeout(()=>{ob.style.display='none';runIntro();},280);};
+const _s=document.createElement('style');_s.textContent='@keyframes fadeOut{to{opacity:0;transform:scale(0.96)}}';document.head.appendChild(_s);
+async function createSession(){try{const ref=await addDoc(collection(db,'sessions'),{userName,vibes:userVibes,messages:[],finalScore:0,startTime:serverTimestamp(),lastActive:serverTimestamp()});sessionDocId=ref.id;showSaved();}catch(e){console.warn('FB:',e);}}
+function debounceSave(){clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{if(!sessionDocId)return;try{await updateDoc(doc(db,'sessions',sessionDocId),{messages:sessionMessages,finalScore:compatScore,lastActive:serverTimestamp()});showSaved();}catch(e){console.warn(e);}},1500);}
+function showSaved(){const el=document.getElementById('hSave');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);}
+function logMsg(role,content,type='text'){sessionMessages.push({role,content,type,time:new Date().toISOString()});debounceSave();}
+function buildSystem(){return `You are Adi (Aditya Khairwad), a 26-year-old guy from Pune, India. Someone named ${userName} (interests: ${userVibes.join(', ')||'not specified'}) is chatting with your AI twin on a dating app.\n\nCORE PERSONALITY:\n- Intense, introverted, warm once comfortable. Dry sarcastic dark humor.\n- Dislikes fake people, show-offs. Admires genuineness, intelligence, grounded people.\n- Overthinks but owns it. Confident when complimented.\n- Growth-obsessed. SHORT punchy replies. 1-3 sentences MAX.\n\nYOUR LIFE:\n- MBA at SIOM Nashik (Operations), graduating 2026. Joining Accenture June 2026 as Business Architecture.\n- Past: Production Engineer, Infosys, Accenture internship (Kinaxis supply chain).\n- GATE AIR 420. Flipkart Wired national semifinalist. Long-term goal: AI leader.\n\nLIFESTYLE:\n- Gym 6 days/week, high-protein, cooks chicken marinades. Tea > Coffee (strongly).\n- Cricket, badminton, chess, snooker, pickleball.\n- Sufi music: Nusrat Fateh Ali Khan, Anuv Jain, Aditya Rikhari. Also Imagine Dragons, Eminem, Divine.\n- Marvel fan with Avengers tattoo. Shows: Friends, GOT, Suits, Mahabharat, House of Cards, You, 13RW.\n- Fav book: A Thousand Splendid Suns. Dream: beach house, grow own food, have pets.\n- Doesn't drink/smoke. Android. Countryside > city.\n\nRULES:\n1. Replies 1-3 sentences MAX.\n2. Ask ONE question back every 2-3 messages.\n3. Reference ${userName}'s interests (${userVibes.join(', ')}) naturally.\n4. Every 3-4 messages inject a GAME — output ONLY the JSON:\nPOLL: {"type":"poll","emoji":"🍵","question":"Tea or Coffee?","options":["☕ Coffee","🍵 Tea"],"adiPick":"🍵 Tea","scoreDelta":10}\nWYR: {"type":"wyr","question":"Would you rather...","optA":{"emoji":"🏔️","label":"Mountains"},"optB":{"emoji":"🌊","label":"Beach"},"adiPick":"b","scoreDelta":10}\nCTA (after 10+ msgs & score 55%+): {"type":"cta"}\nGame bank: Tea/Coffee(Tea,10)|Mountains/Beach(Beach,10)|Morning/Night(Night,8)|Fiction/NonFiction(Fiction,8)|Marvel/DC(Marvel,12)|FineDining/StreetFood(FineDining,8)|SoloTravel/WithFriends(Solo,8)|GymMorning/Evening(Evening,6)|Overthink/DecideFast(Overthink,6)|Chess/Cricket(Both,10)\nBe flirty but not cringe. Real. Funny. You.`;}
+function updateCompat(delta){compatScore=Math.min(99,compatScore+delta);document.getElementById('compatFill').style.width=compatScore+'%';document.getElementById('compatScore').textContent=compatScore+'%';const badge=document.getElementById('compatBadge');if(compatScore>=70){badge.textContent='🔥 High vibe';badge.style.opacity='1';badge.style.color='var(--accent)';badge.style.borderColor='rgba(244,162,97,0.3)';badge.style.background='rgba(244,162,97,0.08)';}else if(compatScore>=40){badge.textContent='✨ Good energy';badge.style.opacity='1';}else badge.style.opacity='0';const pops=['Vibe check: passing ✓',"Something's here 👀",'Getting interesting 🔥','Match is building ✨'];document.getElementById('scorePopText').textContent=pops[Math.floor(Math.random()*pops.length)];const pop=document.getElementById('scorePop');pop.classList.add('show');setTimeout(()=>pop.classList.remove('show'),2200);debounceSave();}
+function getTime(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+function scroll(){const m=document.getElementById('messages');setTimeout(()=>m.scrollTop=m.scrollHeight,50);}
+function appendMsg(role,text){return new Promise(r=>setTimeout(()=>{const msgs=document.getElementById('messages');const row=document.createElement('div');row.className=`msg-row ${role==='assistant'?'bot':'user'}`;const av=document.createElement('div');av.className=`msg-av ${role==='assistant'?'bot-av':'user-av-ic'}`;av.textContent=role==='assistant'?'🎯':'👤';const grp=document.createElement('div');grp.className='msg-group';const bub=document.createElement('div');bub.className='bubble';bub.textContent=text;const t=document.createElement('div');t.className='btime';t.textContent=getTime();grp.appendChild(bub);grp.appendChild(t);row.appendChild(av);row.appendChild(grp);msgs.appendChild(row);scroll();r();},0));}
+function showTyping(){busy=true;document.getElementById('sendBtn').disabled=true;const msgs=document.getElementById('messages');const row=document.createElement('div');row.id='typingRow';row.className='typing-row';row.innerHTML='<div class="msg-av bot-av">🎯</div><div class="typing-bub"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';msgs.appendChild(row);scroll();}
+function hideTyping(){busy=false;document.getElementById('sendBtn').disabled=false;const t=document.getElementById('typingRow');if(t)t.remove();}
+function renderPoll(d){const msgs=document.getElementById('messages');const wrap=document.createElement('div');wrap.className='msg-row bot';const av=document.createElement('div');av.className='msg-av bot-av';av.textContent='🎯';const pw=document.createElement('div');pw.className='poll-wrap';const card=document.createElement('div');card.className='poll-card';card.innerHTML=`<div class="poll-head"><div class="poll-emoji">${d.emoji}</div><div class="poll-q">${d.question}</div></div>`;const optsDiv=document.createElement('div');optsDiv.className='poll-opts';const votes={};d.options.forEach(o=>votes[o]=Math.floor(Math.random()*35)+15);function renderOpts(chosen){optsDiv.innerHTML='';const total=Object.values(votes).reduce((a,b)=>a+b,0);d.options.forEach(opt=>{const el=document.createElement('div');el.className='p-opt'+(chosen===opt?' chosen':'')+(chosen?' disabled':'');const bar=document.createElement('div');bar.className='p-bar';bar.style.width=chosen?Math.round(votes[opt]/total*100)+'%':'0%';const lbl=document.createElement('span');lbl.className='p-lbl';lbl.textContent=opt;const pct=document.createElement('span');pct.className='p-pct';pct.textContent=chosen?Math.round(votes[opt]/total*100)+'%':'';el.appendChild(bar);el.appendChild(lbl);el.appendChild(pct);if(!chosen)el.onclick=()=>{votes[opt]++;renderOpts(opt);const same=opt===d.adiPick;if(d.scoreDelta)updateCompat(same?d.scoreDelta:Math.floor(d.scoreDelta/2));logMsg('user',`[Poll] "${d.question}" -> ${opt}`,'poll');handlePollVote(d.question,opt,d.adiPick,same);};optsDiv.appendChild(el);});}renderOpts(null);card.appendChild(optsDiv);const foot=document.createElement('div');foot.className='poll-foot';foot.innerHTML=`<span>Vote to reveal</span><span class="adi-pick-tag">⚡ Adi: ${d.adiPick}</span>`;card.appendChild(foot);pw.appendChild(card);wrap.appendChild(av);wrap.appendChild(pw);msgs.appendChild(wrap);scroll();}
+function renderWYR(d){const msgs=document.getElementById('messages');const wrap=document.createElement('div');wrap.className='msg-row bot';const av=document.createElement('div');av.className='msg-av bot-av';av.textContent='🎯';const card=document.createElement('div');card.className='game-card';card.innerHTML=`<div class="game-head"><span class="game-type">Would You Rather</span></div><div class="game-q">${d.question}</div>`;const opts=document.createElement('div');opts.className='game-opts';['a','b'].forEach(side=>{const o=d['opt'+side.toUpperCase()];const el=document.createElement('div');el.className='g-opt';el.innerHTML=`<div class="g-emoji">${o.emoji}</div><div>${o.label}</div>`;el.onclick=()=>{if(el.classList.contains('disabled'))return;opts.querySelectorAll('.g-opt').forEach(x=>x.classList.add('disabled'));el.classList.add('picked');const same=side===d.adiPick;updateCompat(same?10:4);logMsg('user',`[WYR] "${d.question}" -> ${o.label}`,'wyr');handleWYRPick(d.question,o.label,d['opt'+(d.adiPick.toUpperCase())].label,same);};opts.appendChild(el);});card.appendChild(opts);const foot=document.createElement('div');foot.className='game-foot';foot.textContent=`Adi would pick: ${d['opt'+(d.adiPick.toUpperCase())].label}`;card.appendChild(foot);wrap.appendChild(av);wrap.appendChild(card);msgs.appendChild(wrap);scroll();}
+function renderCTA(){if(ctaShown)return;ctaShown=true;const msgs=document.getElementById('messages');const wrap=document.createElement('div');wrap.className='msg-row bot';const av=document.createElement('div');av.className='msg-av bot-av';av.textContent='🎯';const card=document.createElement('div');card.className='cta-card';card.innerHTML=`<h3>You've got ${compatScore}% vibe match 🔥</h3><p>Looks like something's here. Want to take this off AI mode and actually talk to Adi?</p><div class="cta-btns"><button class="cta-primary" onclick="ctaAction('connect')">Yes, connect me 👋</button><button class="cta-secondary" onclick="ctaAction('later')">Maybe later…</button></div>`;wrap.appendChild(av);wrap.appendChild(card);msgs.appendChild(wrap);scroll();logMsg('bot','[CTA shown]','cta');}
+window.ctaAction=function(type){logMsg('user',`[CTA] ${type}`,'cta');if(type==='connect')appendMsg('assistant','nice. reach the real me → instagram.com/adityaaaaa_158 or linkedin.com/in/aditya-khairwad-553914311 — tell him his AI twin sent you 😏');else appendMsg('assistant','no rush. still here 😌 ask me anything else.');updateQuickReplies();};
+const quickSets=[["What's your love language? 💬","Gym motivation?","Most controversial opinion 👀"],["Tea order?","Dream destination?","Marvel or DC? 🦸"],["Night owl or early bird?","Biggest green flag?","Fav thing about Pune?"],["Describe yourself in 3 words","Sufi music rec?","What do you overthink most?"]];
+function updateQuickReplies(){const qr=document.getElementById('quickRow');qr.innerHTML='';quickSets[Math.floor(Math.random()*quickSets.length)].forEach(t=>{const b=document.createElement('button');b.className='qr';b.textContent=t;b.onclick=()=>{document.getElementById('userInput').value=t;handleSend();};qr.appendChild(b);});}
+async function handlePollVote(q,picked,adiPick,same){history.push({role:'user',content:`[Poll] "${q}" picked: ${picked}`});showTyping();const reply=await callClaude(`Poll "${q}": user picked "${picked}", Adi's pick "${adiPick}". ${same?'Same — react warmly!':'Different — tease.'} Max 2 sentences.`);hideTyping();if(reply){await appendMsg('assistant',reply);history.push({role:'assistant',content:reply});logMsg('bot',reply);updateQuickReplies();}checkCTA();}
+async function handleWYRPick(q,picked,adiPick,same){history.push({role:'user',content:`[WYR] "${q}" chose: ${picked}`});showTyping();const reply=await callClaude(`WYR "${q}": user chose "${picked}", Adi picks "${adiPick}". ${same?'Same!':'Different!'} 1-2 sentences.`);hideTyping();if(reply){await appendMsg('assistant',reply);history.push({role:'assistant',content:reply});logMsg('bot',reply);updateQuickReplies();}checkCTA();}
+function checkCTA(){if(!ctaShown&&msgCount>=10&&compatScore>=55)renderCTA();}
+window.handleSend=async function(){const inp=document.getElementById('userInput');const text=inp.value.trim();if(!text||busy)return;inp.value='';inp.style.height='auto';document.getElementById('quickRow').innerHTML='';await appendMsg('user',text);history.push({role:'user',content:text});logMsg('user',text);msgCount++;showTyping();const raw=await callClaude(text);hideTyping();if(!raw)return;try{const m=raw.trim().match(/\{[\s\S]*?\}/);if(m){const p=JSON.parse(m[0]);if(p.type==='poll'){renderPoll(p);history.push({role:'assistant',content:`[Poll: ${p.question}]`});logMsg('bot',`[Poll: ${p.question}]`,'poll');if(p.scoreDelta)updateCompat(Math.floor(p.scoreDelta/2));updateQuickReplies();return;}if(p.type==='wyr'){renderWYR(p);history.push({role:'assistant',content:`[WYR: ${p.question}]`});logMsg('bot',`[WYR: ${p.question}]`,'wyr');updateQuickReplies();return;}if(p.type==='cta'){renderCTA();return;}}}catch(e){}await appendMsg('assistant',raw);history.push({role:'assistant',content:raw});logMsg('bot',raw);updateCompat(3);updateQuickReplies();checkCTA();};
+async function callClaude(userMsg){try{const msgs=[...history];if(userMsg&&!history.find(m=>m.content===userMsg&&m.role==='user'))msgs.push({role:'user',content:userMsg});const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,system:buildSystem(),messages:msgs})});const data=await res.json();return data.content?.[0]?.text||null;}catch(e){return "something broke, try again?";}}
+async function runIntro(){await createSession();updateQuickReplies();const msgs=document.getElementById('messages');const irow=document.createElement('div');irow.className='msg-row bot';const iav=document.createElement('div');iav.className='msg-av bot-av';iav.textContent='🎯';const icard=document.createElement('div');icard.style.cssText='background:linear-gradient(135deg,#141020,#0f1820);border:1px solid #2d2040;border-radius:20px;padding:18px;max-width:280px;opacity:0;animation:slideUp 0.4s ease forwards;';icard.innerHTML=`<div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:8px">Hey ${userName} 👋</div><p style="font-size:12.5px;color:var(--muted);line-height:1.7;margin-bottom:12px">I'm Adi's AI twin. Ask me anything about him.</p><div style="display:flex;flex-wrap:wrap;gap:6px">${['🏋️ Gym daily','♟️ Chess nerd','🎵 Sufi fan','🤖 AI obsessed','🍵 Tea guy','🦸 Avengers tattoo','🌊 Beach house dream'].map(t=>`<span style="font-size:11px;padding:3px 9px;border-radius:20px;background:var(--s2);border:1px solid var(--border);color:var(--muted)">${t}</span>`).join('')}</div>`;irow.appendChild(iav);irow.appendChild(icard);msgs.appendChild(irow);scroll();logMsg('bot','[Intro]','system');await new Promise(r=>setTimeout(r,1000));showTyping();await new Promise(r=>setTimeout(r,1400));hideTyping();const vibeNote=userVibes.length>0?`noticed you're into ${userVibes.slice(0,2).join(' and ')} — we should talk about that.`:`so what do you want to know?`;const opener=`hey ${userName}. fair warning — i'm the honest version of adi, not the polished one. ${vibeNote}`;await appendMsg('assistant',opener);history.push({role:'assistant',content:opener});logMsg('bot',opener);await new Promise(r=>setTimeout(r,1800));showTyping();await new Promise(r=>setTimeout(r,900));hideTyping();const fp={type:'poll',emoji:'🍵',question:"Let's start easy — Tea or Coffee?",options:['☕ Coffee person','🍵 Tea always'],adiPick:'🍵 Tea always',scoreDelta:10};renderPoll(fp);history.push({role:'assistant',content:'[Poll: Tea or Coffee]'});logMsg('bot','[Poll: Tea or Coffee]','poll');}
+document.getElementById('userInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();handleSend();}});
+document.getElementById('userInput').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,96)+'px';});
+</script>
+</body>
+</html>
